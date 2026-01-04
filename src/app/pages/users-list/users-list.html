@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="d-flex justify-content-end align-items-end">
+    <input
+      type="text"
+      class="form-control mt-3 me-4 w-50"
+      [formControl]="searchControl"
+      placeholder="Search Users"
+      #searchUser
+    />
+  </div>
+  <div class="card m-3 shadow-sm">
+    <div class="card-header bg-primary text-white">
+      <h5 class="mb-0">Users</h5>
+    </div>
+
+    <ul class="list-group">
+      @for(user of filteredUsers$ | async; track $index){
+      <li class="list-group-item d-flex justify-content-between">
+        <span>{{user.name}}</span>
+        <span class="badge bg-secondary">{{user.status}}</span>
+      </li>
+      } @empty {
+      <li class="list-group-item"><span>No Data</span></li>
+      }
+    </ul>
+  </div>
+</div>
